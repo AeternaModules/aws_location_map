@@ -4,7 +4,7 @@ output "location_maps_id" {
 }
 output "location_maps_configuration" {
   description = "Map of configuration values across all location_maps, keyed the same as var.location_maps"
-  value       = { for k, v in aws_location_map.location_maps : k => v.configuration if v.configuration != null && length(v.configuration) > 0 }
+  value       = { for k, v in aws_location_map.location_maps : k => one(v.configuration) if v.configuration != null && length(v.configuration) > 0 }
 }
 output "location_maps_create_time" {
   description = "Map of create_time values across all location_maps, keyed the same as var.location_maps"
